@@ -13,6 +13,7 @@ def get_wikipedia_fact(query):
     response = requests.get(url)
     if response.status_code == 200:
         data = response.json()
+        print(f"Fact for {query}: {data}")
         return data.get('extract', 'No summary available.')
     else:
         return f"No information found for '{query}'."

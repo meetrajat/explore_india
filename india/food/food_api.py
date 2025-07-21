@@ -33,4 +33,5 @@ def nutrition_info(request: FoodRequest):
     API endpoint to get nutritional information for a food item using the Spoonacular API.
     """
     result = get_nutrition_info(request.food_name)
+    print(f"Nutrition info for {request.food_name}: {result}")
     return result

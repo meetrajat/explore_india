@@ -3,6 +3,7 @@ from pydantic import BaseModel
 from langchain.chat_models import ChatOpenAI
 from langchain.agents import initialize_agent, AgentType
 from india.monuments.monument_tool import get_monument_fact
+from india.food.food_tool import get_nutrition_tool
 from dotenv import load_dotenv
 import os
 
@@ -20,7 +21,7 @@ def ask_fact(request: QueryRequest):
     # By default ChatOpenAI() uses GPT-3.5-turbo model
     # You can change the model by specifying the model parameter
     llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0.7, api_key=os.getenv("OPENAI_API_KEY"))
-    tools = [get_monument_fact]
+    tools = [get_monument_fact,get_nutrition_tool]
     agent = initialize_agent(
         tools, llm, agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION, verbose=True
     )

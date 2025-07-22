@@ -22,6 +22,7 @@ def get_nutrition_info(food_name):
         return {"error": "Spoonacular API key not set in environment."}
     url = f"https://api.spoonacular.com/recipes/guessNutrition?title={food_name}&apiKey={api_key}"
     response = requests.get(url)
+    #print(f"Nutrition info for {requests.food_name}: {response.}")
     if response.status_code == 200:
         return response.json()
     else:
@@ -33,5 +34,5 @@ def nutrition_info(request: FoodRequest):
     API endpoint to get nutritional information for a food item using the Spoonacular API.
     """
     result = get_nutrition_info(request.food_name)
-    print(f"Nutrition info for {request.food_name}: {result}")
+    
     return result
